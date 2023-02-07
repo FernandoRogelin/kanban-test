@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css } from '@emotion/react'
 
 const GlobalStyles = css`
   * {
@@ -17,6 +17,10 @@ const GlobalStyles = css`
   #___gatsby {
     height: 100%;
   }
-`;
 
-export default GlobalStyles;
+  body {
+    font-family: Montserrat, sans-serif;
+  }
+`
+
+export default GlobalStyles

@@ -1,7 +1,56 @@
-import * as S from "./styles";
+import { useMemo } from 'react'
+import * as S from './styles'
+
+import { Column, Card } from 'components'
 
 const Dashboard = () => {
-  return <S.Wrapper>Testando o Dashboard</S.Wrapper>;
-};
+  const columns = useMemo(
+    () => [
+      {
+        title: 'To do',
+        data: {
+          id: '1234',
+          lista: 'Todo',
+          titulo: 'Fernando',
+          conteudo:
+            'Testando vários textos para ver como vai ficar essa desgraça no layout dedle'
+        }
+      },
+      {
+        title: 'Doing',
+        data: {
+          id: '1234',
+          lista: 'Todo',
+          titulo: 'Fernando',
+          conteudo: 'Testando'
+        }
+      },
+      {
+        title: 'Done',
+        data: {
+          id: '1234',
+          lista: 'Todo',
+          titulo: 'Fernando',
+          conteudo: 'Testando'
+        }
+      }
+    ],
+    []
+  )
 
-export default Dashboard;
+  return (
+    <S.Wrapper>
+      <S.Board>
+        {columns.map((column, index) => (
+          <Column key={index} title={column.title}>
+            <Card card={column.data} />
+            <Card card={column.data} />
+            <Card card={column.data} />
+          </Column>
+        ))}
+      </S.Board>
+    </S.Wrapper>
+  )
+}
+
+export default Dashboard

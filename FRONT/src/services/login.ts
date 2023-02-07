@@ -1,10 +1,10 @@
-import fetchService from "services";
+import fetchService from 'services'
 
-import { LoginPayload } from "types/login";
+import { LoginPayload } from 'types/login'
 
 export const loginApp = (payload: LoginPayload) =>
   fetchService({
-    url: "login/",
+    url: 'login/',
     body: payload,
-    method: "POST",
-  });
+    method: 'POST'
+  })

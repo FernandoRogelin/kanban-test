@@ -1,35 +1,35 @@
-import { fetchServiceProps } from "./types";
+import { fetchServiceProps } from './types'
 
-import { Cookies } from "react-cookie";
+import { Cookies } from 'react-cookie'
 
 async function fetchService<T = string>(config: fetchServiceProps) {
-  const { method = "GET", url, body } = config;
+  const { method = 'GET', url, body } = config
 
   const response = await fetch(`http://localhost:5000/${url}`, {
     method,
     headers: headerContent(),
-    body: JSON.stringify(body),
-  });
+    body: JSON.stringify(body)
+  })
 
-  return (await response.json()) as T;
+  return (await response.json()) as T
 }
 
 function headerContent() {
-  const cookies: Cookies = new Cookies();
-  const token = cookies.get("token");
+  const cookies: Cookies = new Cookies()
+  const token = cookies.get('token')
 
   const headers = {
-    "content-type": "application/json;charset=UTF-8",
-    "Access-Control-Allow-Headers": "*",
-  } as HeadersInit;
+    'content-type': 'application/json;charset=UTF-8',
+    'Access-Control-Allow-Headers': '*'
+  } as HeadersInit
 
   if (token) {
     Object.assign(headers, {
-      Authorization: `Bearer ${token}`,
-    });
+      Authorization: `Bearer ${token}`
+    })
   }
 
-  return headers;
+  return headers
 }
 
-export default fetchService;
+export default fetchService
