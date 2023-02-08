@@ -4,8 +4,8 @@ import { useCookies } from 'react-cookie'
 import * as S from './styles'
 import { CardsResponse } from './types'
 import { getCards } from 'services/card'
-import { Column, Card } from 'components'
 import { filterColumn } from './functions'
+import { Column, Card, Button } from 'components'
 
 const Dashboard = () => {
   const [token] = useCookies(['token'])
@@ -47,6 +47,7 @@ const Dashboard = () => {
   return (
     <S.Wrapper>
       <S.Board>
+        <Button>Adicionar Card</Button>
         {columns.map((column, index) => (
           <Column key={index} title={column.title}>
             {column.data.map((card) => (

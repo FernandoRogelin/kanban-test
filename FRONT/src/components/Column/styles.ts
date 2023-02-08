@@ -8,7 +8,6 @@ export const Column = styled.div`
     overflow-y: auto;
     border: 0.2rem solid transparent;
     padding: ${theme.spacings.xxsmall};
-    margin-top: ${theme.spacings.xxsmall};
     border-radius: ${theme.border.medium};
     background-color: ${theme.colors.catskillWhite};
 

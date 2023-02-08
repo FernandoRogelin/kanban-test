@@ -43,6 +43,7 @@ export default {
     white: '#fff',
     black: '#000',
     gray: '#7D7D7D',
+    blue: '#0126D9',
     shipCove: '#727EAB',
     lightGray: '#CCD0E1',
     catskillWhite: '#E3E7F2'

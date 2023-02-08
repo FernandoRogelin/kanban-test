@@ -9,8 +9,10 @@ export const Board = styled.div`
   ${({ theme }) => css`
     height: 86%;
     display: grid;
+    align-items: flex-start;
     justify-content: center;
     column-gap: ${theme.spacings.small};
-    grid-template-columns: repeat(3, 26rem);
+    padding-top: ${theme.spacings.xxsmall};
+    grid-template-columns: 14rem repeat(3, 26rem);
   `}
 `
