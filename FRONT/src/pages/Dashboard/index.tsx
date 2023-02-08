@@ -5,6 +5,7 @@ import Modal from './Modal'
 import * as S from './styles'
 import { CardsResponse } from './types'
 import { filterColumn } from './functions'
+import { Chevrons } from 'components/Card/types'
 import { Column, Card, Button } from 'components'
 import { getCards, deleteCard } from 'services/card'
 
@@ -39,6 +40,15 @@ const Dashboard = () => {
     setIsOpenModal(false)
   }
 
+  async function updateCard(card: CardsResponse, chevron: Chevrons) {
+    try {
+      console.log(card)
+      console.log(chevron)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   async function removeCard(id: string) {
     try {
       const response = await deleteCard(id)
@@ -70,7 +80,12 @@ const Dashboard = () => {
         {columns.map((column, index) => (
           <Column key={index} title={column.title}>
             {column.data.map((card) => (
-              <Card key={card.id} card={card} handleDeleteCard={removeCard} />
+              <Card
+                card={card}
+                key={card.id}
+                updateCard={updateCard}
+                handleDeleteCard={removeCard}
+              />
             ))}
           </Column>
         ))}

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion-icons/boxicons-regular": "^3.19.0",
+    "@emotion-icons/boxicons-solid": "^3.19.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@testing-library/jest-dom": "^5.14.1",
