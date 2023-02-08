@@ -7,7 +7,7 @@ import { CardsResponse } from './types'
 import { filterColumn } from './functions'
 import { Chevrons } from 'components/Card/types'
 import { Column, Card, Button } from 'components'
-import { getCards, deleteCard } from 'services/card'
+import { getCards, deleteCard, updateCard } from 'services/card'
 
 const Dashboard = () => {
   const [token] = useCookies(['token'])
@@ -40,10 +40,24 @@ const Dashboard = () => {
     setIsOpenModal(false)
   }
 
-  async function updateCard(card: CardsResponse, chevron: Chevrons) {
+  function nextCardList(card: CardsResponse, chevron: Chevrons) {
+    const listsChevronRight = {
+      ToDo: chevron === 'right' ? 'Doing' : 'ToDo',
+      Doing: chevron === 'right' ? 'Done' : 'ToDo',
+      Done: chevron === 'right' ? 'Done' : 'Doing'
+    }
+
+    return { ...card, lista: listsChevronRight[card.lista] } as CardsResponse
+  }
+
+  async function updateOneCard(card: CardsResponse, chevron: Chevrons) {
     try {
-      console.log(card)
-      console.log(chevron)
+      const response = await updateCard(nextCardList(card, chevron))
+
+      const newValues = cards.map(
+        (card) => [response].find((newCard) => newCard.id === card.id) || card
+      )
+      setCards(newValues)
     } catch (error) {
       console.error(error)
     }
@@ -83,7 +97,7 @@ const Dashboard = () => {
               <Card
                 card={card}
                 key={card.id}
-                updateCard={updateCard}
+                updateCard={updateOneCard}
                 handleDeleteCard={removeCard}
               />
             ))}

@@ -44,7 +44,6 @@ export const Footer = styled.footer`
 
 const Chevrons = styled.div`
   top: 50%;
-  right: -18px;
   position: absolute;
   transform: translate(0, -50%);
 

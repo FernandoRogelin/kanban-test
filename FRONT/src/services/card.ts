@@ -9,11 +9,11 @@ export const getCards = () => fetchService<CardsResponse[]>({ url: cards })
 export const addCard = (payload: CardPayload) =>
   fetchService<CardsResponse>({ url: cards, method: 'POST', body: payload })
 
-export const updateCard = (id: string, payload: CardPayload) =>
+export const updateCard = (payload: CardPayload) =>
   fetchService<CardsResponse>({
     method: 'PUT',
     body: payload,
-    url: `${cards}${id}`
+    url: `${cards}${payload.id}`
   })
 
 export const deleteCard = (id: string) =>

@@ -7,8 +7,4 @@ export type CardsResponse = {
 
 export type Lista = 'ToDo' | 'Doing' | 'Done'
 
-export type CardPayload = {
-  lista: Lista
-  titulo: string
-  conteudo: string
-}
+export type CardPayload = CardsResponse

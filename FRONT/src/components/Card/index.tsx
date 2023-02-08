@@ -13,7 +13,7 @@ const Card = ({ card, handleDeleteCard, updateCard }: CardProps) => {
         <S.Text>{card.conteudo}</S.Text>
       </div>
       <S.Footer>
-        <Trash size={22} onClick={() => handleDeleteCard(card.id)} />
+        <Trash size={20} onClick={() => handleDeleteCard(card.id)} />
       </S.Footer>
       {card.lista !== 'Done' && (
         <S.ChevronRight onClick={() => updateCard(card, 'right')}>
