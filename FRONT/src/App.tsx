@@ -8,6 +8,7 @@ import * as Pages from 'pages'
 import theme from 'styles/theme'
 import GlobalStyles from 'styles/global'
 import { loginApp } from 'services/login'
+import { parseJwt } from 'helpers/token.utils'
 
 function App() {
   const [token, setToken] = useCookies(['token'])
@@ -16,10 +17,16 @@ function App() {
     try {
       const token = await loginApp({ login: 'letscode', senha: 'lets@123' })
 
-      setToken('token', token)
+      const { exp } = parseJwt(token)
+
+      setToken('token', token, { path: '/', expires: expirationToken(exp) })
     } catch (error) {
       console.error(error)
     }
+  }
+
+  function expirationToken(expiration: number) {
+    return new Date(expiration * 1000)
   }
 
   useEffect(() => {
