@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from 'react'
 import { useCookies } from 'react-cookie'
 
+import Modal from './Modal'
 import * as S from './styles'
 import { CardsResponse } from './types'
 import { getCards } from 'services/card'
@@ -10,6 +11,7 @@ import { Column, Card, Button } from 'components'
 const Dashboard = () => {
   const [token] = useCookies(['token'])
 
+  const [isOpenModal, setIsOpenModal] = useState(false)
   const [cards, setCards] = useState<CardsResponse[]>([])
 
   const columns = useMemo(
@@ -30,6 +32,13 @@ const Dashboard = () => {
     [cards]
   )
 
+  function handleSuccess(value: CardsResponse) {
+    const newCards = cards.concat(value)
+    setCards(newCards)
+
+    setIsOpenModal(false)
+  }
+
   async function fetchCards() {
     try {
       const response = await getCards()
@@ -47,7 +56,7 @@ const Dashboard = () => {
   return (
     <S.Wrapper>
       <S.Board>
-        <Button>Adicionar Card</Button>
+        <Button onClick={() => setIsOpenModal(true)}>Adicionar Card</Button>
         {columns.map((column, index) => (
           <Column key={index} title={column.title}>
             {column.data.map((card) => (
@@ -56,6 +65,12 @@ const Dashboard = () => {
           </Column>
         ))}
       </S.Board>
+      {isOpenModal && (
+        <Modal
+          handleSuccess={handleSuccess}
+          handleClose={() => setIsOpenModal(false)}
+        />
+      )}
     </S.Wrapper>
   )
 }

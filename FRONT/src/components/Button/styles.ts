@@ -1,8 +1,17 @@
 import styled from '@emotion/styled'
-import { css } from '@emotion/react'
+import { css, Theme } from '@emotion/react'
 
-export const Button = styled.button`
-  ${({ theme }) => css`
+import { ButtonProps } from './types'
+
+const ButtonModifier = {
+  disabled: (theme: Theme) => css`
+    cursor: not-allowed;
+    background-color: ${theme.colors.shipCove};
+  `
+}
+
+export const Button = styled.button<ButtonProps>`
+  ${({ theme, disabled }) => css`
     border: none;
     cursor: pointer;
     color: ${theme.colors.white};
@@ -15,5 +24,7 @@ export const Button = styled.button`
     &:hover {
       opacity: 0.8;
     }
+
+    ${disabled && ButtonModifier.disabled(theme)}
   `}
 `
