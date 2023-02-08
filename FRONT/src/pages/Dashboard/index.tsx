@@ -4,9 +4,9 @@ import { useCookies } from 'react-cookie'
 import Modal from './Modal'
 import * as S from './styles'
 import { CardsResponse } from './types'
-import { getCards } from 'services/card'
 import { filterColumn } from './functions'
 import { Column, Card, Button } from 'components'
+import { getCards, deleteCard } from 'services/card'
 
 const Dashboard = () => {
   const [token] = useCookies(['token'])
@@ -39,6 +39,16 @@ const Dashboard = () => {
     setIsOpenModal(false)
   }
 
+  async function removeCard(id: string) {
+    try {
+      const response = await deleteCard(id)
+
+      setCards(response)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   async function fetchCards() {
     try {
       const response = await getCards()
@@ -60,7 +70,7 @@ const Dashboard = () => {
         {columns.map((column, index) => (
           <Column key={index} title={column.title}>
             {column.data.map((card) => (
-              <Card key={card.id} card={card} />
+              <Card key={card.id} card={card} handleDeleteCard={removeCard} />
             ))}
           </Column>
         ))}

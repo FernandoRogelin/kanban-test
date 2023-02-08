@@ -13,8 +13,8 @@ export const updateCard = (id: string, payload: CardPayload) =>
   fetchService<CardsResponse>({
     method: 'PUT',
     body: payload,
-    url: `${cards}/${id}`
+    url: `${cards}${id}`
   })
 
 export const deleteCard = (id: string) =>
-  fetchService<CardsResponse[]>({ url: `${cards}/${id}`, method: 'DELETE' })
+  fetchService<CardsResponse[]>({ url: `${cards}${id}`, method: 'DELETE' })
