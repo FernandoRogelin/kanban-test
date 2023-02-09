@@ -5,7 +5,7 @@ import { Cookies } from 'react-cookie'
 async function fetchService<T = string>(config: fetchServiceProps) {
   const { method = 'GET', url, body } = config
 
-  const response = await fetch(`http://localhost:5000/${url}`, {
+  const response = await fetch(`http://0.0.0.0:5000/${url}`, {
     method,
     headers: headerContent(),
     body: JSON.stringify(body)
