@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie'
 
 import Modal from './Modal'
 import * as S from './styles'
-import { CardsResponse } from './types'
+import { TypeCards } from './types'
 import { filterColumn } from './functions'
 import { Chevrons } from 'components/Card/types'
 import { Column, Card, Button } from 'components'
@@ -13,7 +13,7 @@ const Dashboard = () => {
   const [token] = useCookies(['token'])
 
   const [isOpenModal, setIsOpenModal] = useState(false)
-  const [cards, setCards] = useState<CardsResponse[]>([])
+  const [cards, setCards] = useState<TypeCards[]>([])
 
   const columns = useMemo(
     () => [
@@ -33,14 +33,14 @@ const Dashboard = () => {
     [cards]
   )
 
-  function handleSuccess(value: CardsResponse) {
+  function handleSuccess(value: TypeCards) {
     const newCards = cards.concat(value)
     setCards(newCards)
 
     setIsOpenModal(false)
   }
 
-  function nextCardList(card: CardsResponse, chevron?: Chevrons) {
+  function nextCardList(card: TypeCards, chevron?: Chevrons) {
     if (!chevron) return card
 
     const listsChevronRight = {
@@ -49,10 +49,10 @@ const Dashboard = () => {
       Done: chevron === 'right' ? 'Done' : 'Doing'
     }
 
-    return { ...card, lista: listsChevronRight[card.lista] } as CardsResponse
+    return { ...card, lista: listsChevronRight[card.lista] } as TypeCards
   }
 
-  async function updateOneCard(card: CardsResponse, chevron?: Chevrons) {
+  async function updateOneCard(card: TypeCards, chevron?: Chevrons) {
     try {
       const response = await updateCard(nextCardList(card, chevron))
 

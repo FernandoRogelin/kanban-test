@@ -11,7 +11,7 @@ import { SaveEdit } from '@emotion-icons/fluentui-system-regular/SaveEdit'
 import { ChevronRight } from '@emotion-icons/boxicons-regular/ChevronRight'
 
 import { CardProps } from './types'
-import { CardsResponse } from 'pages/Dashboard/types'
+import { TypeCards } from 'pages/Dashboard/types'
 
 const Card = ({ card, handleDeleteCard, updateCard }: CardProps) => {
   const [edit, setEdit] = useState(false)
@@ -23,7 +23,7 @@ const Card = ({ card, handleDeleteCard, updateCard }: CardProps) => {
       ...card,
       titulo: editTitle || card.titulo,
       conteudo: editContent || card.conteudo
-    } as CardsResponse
+    } as TypeCards
 
     updateCard(newCard)
     setEdit(false)
@@ -59,7 +59,6 @@ const Card = ({ card, handleDeleteCard, updateCard }: CardProps) => {
                 gfm: true,
                 breaks: true,
                 pedantic: false,
-                sanitize: true,
                 smartLists: true,
                 smartypants: false,
                 highlight: (code) => hljs.highlightAuto(code).value

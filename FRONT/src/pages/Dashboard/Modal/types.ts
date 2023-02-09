@@ -1,6 +1,6 @@
-import { CardsResponse } from '../types'
+import { TypeCards } from '../types'
 
 export type ModalProps = {
   handleClose: () => void
-  handleSuccess: (value: CardsResponse) => void
+  handleSuccess: (value: TypeCards) => void
 }

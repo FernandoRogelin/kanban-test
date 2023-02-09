@@ -6,7 +6,7 @@ import DOMPurify from 'dompurify'
 import { Button } from 'components'
 import { ModalProps } from './types'
 import { addCard } from 'services/card'
-import { CardsResponse } from '../types'
+import { TypeCards } from '../types'
 
 const Modal = ({ handleClose, handleSuccess }: ModalProps) => {
   const [title, setTitle] = useState('')
@@ -27,7 +27,7 @@ const Modal = ({ handleClose, handleSuccess }: ModalProps) => {
         lista: 'ToDo',
         titulo: title,
         conteudo: DOMPurify.sanitize(content)
-      } as CardsResponse
+      } as TypeCards
 
       const response = await addCard(values)
 

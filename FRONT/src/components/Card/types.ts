@@ -1,9 +1,9 @@
-import { CardsResponse } from 'pages/Dashboard/types'
+import { TypeCards } from 'pages/Dashboard/types'
 
 export type CardProps = {
-  card: CardsResponse
+  card: TypeCards
   handleDeleteCard: (id: string) => void
-  updateCard: (value: CardsResponse, chevron?: Chevrons) => void
+  updateCard: (value: TypeCards, chevron?: Chevrons) => void
 }
 
 export type Chevrons = 'left' | 'right'

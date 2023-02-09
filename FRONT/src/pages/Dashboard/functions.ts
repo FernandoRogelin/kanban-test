@@ -1,5 +1,5 @@
-import { CardsResponse, Lista } from './types'
+import { TypeCards, Lista } from './types'
 
-export function filterColumn(cards: CardsResponse[], filter: Lista) {
+export function filterColumn(cards: TypeCards[], filter: Lista) {
   return cards.filter((card) => card.lista === filter)
 }

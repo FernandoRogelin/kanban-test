@@ -1,20 +1,20 @@
 import fetchService from 'services'
 
-import { CardsResponse, CardPayload } from 'pages/Dashboard/types'
+import { TypeCards } from 'pages/Dashboard/types'
 
 const cards = 'cards/'
 
-export const getCards = () => fetchService<CardsResponse[]>({ url: cards })
+export const getCards = () => fetchService<TypeCards[]>({ url: cards })
 
-export const addCard = (payload: CardPayload) =>
-  fetchService<CardsResponse>({ url: cards, method: 'POST', body: payload })
+export const addCard = (payload: TypeCards) =>
+  fetchService<TypeCards>({ url: cards, method: 'POST', body: payload })
 
-export const updateCard = (payload: CardPayload) =>
-  fetchService<CardsResponse>({
+export const updateCard = (payload: TypeCards) =>
+  fetchService<TypeCards>({
     method: 'PUT',
     body: payload,
     url: `${cards}${payload.id}`
   })
 
 export const deleteCard = (id: string) =>
-  fetchService<CardsResponse[]>({ url: `${cards}${id}`, method: 'DELETE' })
+  fetchService<TypeCards[]>({ url: `${cards}${id}`, method: 'DELETE' })

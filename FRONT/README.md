@@ -1,3 +1,11 @@
+## Dificuldades
+
+- Usar esta biblioteca para fazer o uso de markdown quando adiciona/atualiza um card, pois nunca tinha
+feito algo parecido nos projetos que fiz, ler a doc levou algum tempo e mesmo assim, não chegou a ficar
+100% como é para ser.
+- Não cheguei a fazer testes unitários/integração por que ai, não iria conseguir entregar com
+todas as features que pediram para fazer, mas eu gostaria de ter colocado.
+
 ## O projeto possui as seguintes tecnologias
 
 - [Vite](https://vitejs.dev/)
@@ -8,7 +16,7 @@
 
 ## Iniciando o projeto
 
-Primeiramente instale as dependencias
+Primeiramente instale as dependencias:
 
 ```bash
 npm install

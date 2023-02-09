@@ -1,4 +1,4 @@
-export type CardsResponse = {
+export type TypeCards = {
   id: string
   lista: Lista
   titulo: string
@@ -6,5 +6,3 @@ export type CardsResponse = {
 }
 
 export type Lista = 'ToDo' | 'Doing' | 'Done'
-
-export type CardPayload = CardsResponse
