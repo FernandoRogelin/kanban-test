@@ -2,7 +2,10 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { FooterProps } from './types'
 
-import { Input as InputModal } from 'pages/Dashboard/Modal/styles'
+import {
+  Input as InputModal,
+  TextArea as TextAreaModal
+} from 'pages/Dashboard/Modal/styles'
 
 export const Card = styled.div`
   ${({ theme }) => css`
@@ -28,9 +31,8 @@ export const Title = styled.h2`
   `}
 `
 
-export const Text = styled.p`
+export const Text = styled.div`
   ${({ theme }) => css`
-    color: ${theme.colors.shipCove};
     font-size: ${theme.fontSizes.xsmall};
   `}
 `
@@ -75,4 +77,8 @@ export const EditIcon = styled.div`
 
 export const Input = styled(InputModal)`
   margin-bottom: 0.5rem;
+`
+
+export const TextArea = styled(TextAreaModal)`
+  min-height: 6rem;
 `

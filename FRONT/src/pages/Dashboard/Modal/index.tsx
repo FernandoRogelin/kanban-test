@@ -2,9 +2,11 @@
 import { useEffect, useState } from 'react'
 import * as S from './styles'
 
+import DOMPurify from 'dompurify'
 import { Button } from 'components'
 import { ModalProps } from './types'
 import { addCard } from 'services/card'
+import { CardsResponse } from '../types'
 
 const Modal = ({ handleClose, handleSuccess }: ModalProps) => {
   const [title, setTitle] = useState('')
@@ -21,11 +23,13 @@ const Modal = ({ handleClose, handleSuccess }: ModalProps) => {
 
   async function saveNewCard() {
     try {
-      const response = await addCard({
+      const values = {
         lista: 'ToDo',
         titulo: title,
-        conteudo: content
-      })
+        conteudo: DOMPurify.sanitize(content)
+      } as CardsResponse
+
+      const response = await addCard(values)
 
       handleSuccess(response)
     } catch (error) {

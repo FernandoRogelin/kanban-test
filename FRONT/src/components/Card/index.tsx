@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import * as S from './styles'
 
+import { marked } from 'marked'
+import hljs from 'highlight.js'
 import { Cancel } from '@emotion-icons/material/Cancel'
 import { Trash } from '@emotion-icons/boxicons-solid/Trash'
 import { EditAlt } from '@emotion-icons/boxicons-regular/EditAlt'
@@ -10,7 +12,6 @@ import { ChevronRight } from '@emotion-icons/boxicons-regular/ChevronRight'
 
 import { CardProps } from './types'
 import { CardsResponse } from 'pages/Dashboard/types'
-import { TextArea } from 'pages/Dashboard/Modal/styles'
 
 const Card = ({ card, handleDeleteCard, updateCard }: CardProps) => {
   const [edit, setEdit] = useState(false)
@@ -47,12 +48,24 @@ const Card = ({ card, handleDeleteCard, updateCard }: CardProps) => {
         )}
 
         {edit ? (
-          <TextArea
+          <S.TextArea
             defaultValue={card.conteudo}
             onChange={(e) => setEditContent(e.target.value)}
           />
         ) : (
-          <S.Text>{card.conteudo}</S.Text>
+          <S.Text
+            dangerouslySetInnerHTML={{
+              __html: marked.parse(card.conteudo, {
+                gfm: true,
+                breaks: true,
+                pedantic: false,
+                sanitize: true,
+                smartLists: true,
+                smartypants: false,
+                highlight: (code) => hljs.highlightAuto(code).value
+              })
+            }}
+          />
         )}
       </div>
 
