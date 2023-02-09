@@ -1,5 +1,8 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
+import { FooterProps } from './types'
+
+import { Input as InputModal } from 'pages/Dashboard/Modal/styles'
 
 export const Card = styled.div`
   ${({ theme }) => css`
@@ -32,14 +35,16 @@ export const Text = styled.p`
   `}
 `
 
-export const Footer = styled.footer`
-  display: flex;
-  justify-content: center;
-  margin-top: ${({ theme }) => theme.spacings.xxsmall};
+export const Footer = styled.footer<FooterProps>`
+  ${({ theme, edit }) => css`
+    display: flex;
+    margin-top: ${theme.spacings.xxsmall};
+    justify-content: ${edit ? 'space-between' : 'center'};
 
-  & > svg {
-    cursor: pointer;
-  }
+    & > svg {
+      cursor: pointer;
+    }
+  `}
 `
 
 const Chevrons = styled.div`
@@ -58,4 +63,16 @@ export const ChevronRight = styled(Chevrons)`
 
 export const ChevronLeft = styled(Chevrons)`
   left: -18px;
+`
+
+export const EditIcon = styled.div`
+  top: -8px;
+  right: -8px;
+  cursor: pointer;
+  position: absolute;
+  color: ${({ theme }) => theme.colors.shipCove};
+`
+
+export const Input = styled(InputModal)`
+  margin-bottom: 0.5rem;
 `

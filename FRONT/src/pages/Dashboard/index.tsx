@@ -40,7 +40,9 @@ const Dashboard = () => {
     setIsOpenModal(false)
   }
 
-  function nextCardList(card: CardsResponse, chevron: Chevrons) {
+  function nextCardList(card: CardsResponse, chevron?: Chevrons) {
+    if (!chevron) return card
+
     const listsChevronRight = {
       ToDo: chevron === 'right' ? 'Doing' : 'ToDo',
       Doing: chevron === 'right' ? 'Done' : 'ToDo',
@@ -50,7 +52,7 @@ const Dashboard = () => {
     return { ...card, lista: listsChevronRight[card.lista] } as CardsResponse
   }
 
-  async function updateOneCard(card: CardsResponse, chevron: Chevrons) {
+  async function updateOneCard(card: CardsResponse, chevron?: Chevrons) {
     try {
       const response = await updateCard(nextCardList(card, chevron))
 

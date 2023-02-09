@@ -54,7 +54,7 @@ export const TextArea = styled.textarea`
   width: 100%;
   resize: none;
   outline: none;
-  min-height: 10rem;
+  min-height: 6rem;
 `
 
 export const Footer = styled.footer`
